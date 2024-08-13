@@ -16,8 +16,16 @@ public class ProducerDemo {
     //Create Producer Properties
     Properties properties = new Properties();
 
-    //Connect to Localhost
+    //Connect to Unsecure server or Localhost
     properties.setProperty("bootstrap.servers", "[::1]:9092");
+
+    //Connect to Secure server
+    /*
+    properties.setProperty("bootstrap.servers", "");
+    properties.setProperty("security.protocol", "");
+    properties.setProperty("sasl.jaas.config", "");
+    properties.setProperty("sasl.mechanism", "");
+    */
 
     //set producer properties
     properties.setProperty("key.serializer", StringSerializer.class.getName());
