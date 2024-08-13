@@ -7,6 +7,12 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This is a simple Kafka producer example that demonstrates how to send messages to a Kafka topic.
+ *
+ * @author Ankit
+ */
+
 public class ProducerDemo {
 
   private static final Logger log = LoggerFactory.getLogger(ProducerDemo.class.getSimpleName());
