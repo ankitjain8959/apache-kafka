@@ -1,4 +1,4 @@
-package org.ankit;
+package org.ankit.producer;
 
 import java.util.Properties;
 import org.apache.kafka.clients.producer.Callback;
@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class demonstrates a Kafka producer with callback functionality.
- * It sends messages to a Kafka topic asynchronously and logs the metadata (i.e. partition, metadata etc) of successfully sent messages.
+ * This class demonstrates a Kafka producer with keys.
+ * It sends messages to a Kafka topic asynchronously and logs the metadata (i.e. partition, metadata etc.) of successfully sent messages.
  *
  * @author Ankit
  * @version 1.0
@@ -26,7 +26,7 @@ public class ProducerDemoWithKeys {
     //Connect to Secure server
     properties.setProperty("bootstrap.servers", "https://liked-cougar-5356-us1-kafka.upstash.io:9092");
     properties.setProperty("security.protocol", "SASL_SSL");
-    properties.setProperty("sasl.jaas.config", "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"*************\" password=\"**************\";");
+    properties.setProperty("sasl.jaas.config", "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"bGlrZWQtY291Z2FyLTUzNTYkng_vJc9e_qR-MYNRgIEkapzv9eP6PcEShlmRt5E\" password=\"OTY1MGY5ZTEtOWM3ZC00YjVhLThhZTItMmY0YWYxOWVjZjhl\";");
     properties.setProperty("sasl.mechanism", "SCRAM-SHA-256");
 
 
@@ -54,7 +54,7 @@ public class ProducerDemoWithKeys {
             //executes every time a record is successfully sent or an exception is thrown
             if(exception == null) {
               //record was sent successfully
-              log.info("Key: " + key + " | Partition: " + recordMetadata.partition());
+              log.info("Key: {} | Partition: {}", key, recordMetadata.partition());
             } else {
               log.error("Error while producing");
             }
@@ -67,7 +67,6 @@ public class ProducerDemoWithKeys {
           throw new RuntimeException(e);
         }
       }
-
     }
 
     //flush the producer - tell the producer to send all data and block until done: synchronous operation

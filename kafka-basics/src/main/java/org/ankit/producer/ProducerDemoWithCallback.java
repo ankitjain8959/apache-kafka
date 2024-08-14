@@ -1,4 +1,4 @@
-package org.ankit;
+package org.ankit.producer;
 
 import java.util.Properties;
 import org.apache.kafka.clients.producer.Callback;
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class demonstrates a Kafka producer with callback functionality.
- * It sends messages to a Kafka topic asynchronously and logs the metadata (i.e. partition, metadata etc) of successfully sent messages.
+ * It sends messages to a Kafka topic asynchronously and logs the metadata (i.e. partition, metadata etc.) of successfully sent messages.
  *
  * @author Ankit
  * @version 1.0
@@ -24,8 +24,11 @@ public class ProducerDemoWithCallback {
     //Create Producer Properties
     Properties properties = new Properties();
 
-    //Connect to Unsecure server or Localhost
-    properties.setProperty("bootstrap.servers", "[::1]:9092");
+    //Connect to Secure server
+    properties.setProperty("bootstrap.servers", "https://liked-cougar-5356-us1-kafka.upstash.io:9092");
+    properties.setProperty("security.protocol", "SASL_SSL");
+    properties.setProperty("sasl.jaas.config", "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"bGlrZWQtY291Z2FyLTUzNTYkng_vJc9e_qR-MYNRgIEkapzv9eP6PcEShlmRt5E\" password=\"OTY1MGY5ZTEtOWM3ZC00YjVhLThhZTItMmY0YWYxOWVjZjhl\";");
+    properties.setProperty("sasl.mechanism", "SCRAM-SHA-256");
 
     //set producer properties
     properties.setProperty("key.serializer", StringSerializer.class.getName());
